@@ -1,13 +1,23 @@
-require('@google-cloud/debug-agent').start()
+
 
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 
-const recordRouter = require('./routes/record')
+const preferences = require('./routes/preferencesrouter')
+const city = require('./routes/cityrouter')
+const food = require('./routes/foodrouter')
+const recipe = require('./routes/recipesrouter')
+const user = require('./routes/usersrouter')
+const history = require('./routes/historyrouter')
 
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(recordRouter)
+app.use(preferences)
+app.use(city)
+app.use(food)
+app.use(recipe)
+app.use(user)
+app.use(history)
 
 app.get("/", (req, res) => {
     console.log("Response success")
